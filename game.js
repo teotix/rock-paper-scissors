@@ -13,13 +13,30 @@ function capitalize(string) {
   return lower[0].toUpperCase() + lower.slice(1);
 }
 
+// function getUserChoice() {
+//   let choicePrompt = prompt("Rock, Paper or Scissors?");
+//   if (
+//     choicePrompt == "" ||
+//     choicePrompt == null ||
+//     !["Rock", "Paper", "Scissors"].includes(capitalize(choicePrompt))
+//   ) {
+//     getUserChoice();
+//   } else return capitalize(choicePrompt);
+// }
+
 function getUserChoice() {
-  let choicePrompt = prompt("Rock, Paper or Scissors?");
-  choicePrompt == "" || choicePrompt == null ? getUserChoice() : "";
+  let choicePrompt = "";
+  while (
+    choicePrompt == "" ||
+    choicePrompt == null ||
+    !["Rock", "Paper", "Scissors"].includes(capitalize(choicePrompt))
+  ) {
+    choicePrompt = prompt("Rock, Paper or Scissors?");
+  }
   return capitalize(choicePrompt);
 }
 
-function playGame(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
   if (
     (playerSelection == "Rock" && computerSelection == "Scissors") ||
     (playerSelection == "Paper" && computerSelection == "Rock") ||
@@ -28,13 +45,32 @@ function playGame(playerSelection, computerSelection) {
     return `You Win! ${playerSelection} beats ${computerSelection}`;
   } else if (playerSelection === computerSelection) {
     return `Draw! You both chose ${playerSelection}`;
-  } else if (!["Rock", "Paper", "Scissors"].includes(playerSelection)) {
-    return "You have chosen an invalid value!";
   } else return `You Lose! ${computerSelection} beats ${playerSelection}`;
 }
 
-let userChoice = getUserChoice();
+function game() {
+  let userScore = 0;
+  let computerScore = 0;
+  for (let i = 0; i < 5; i++) {
+    let userChoice = getUserChoice();
+    let computerChoice = getComputerChoice();
+    console.log(playRound(userChoice, computerChoice));
+    let round = playRound(userChoice, computerChoice);
+    round.includes("Win")
+      ? userScore++
+      : round.includes("Lose")
+      ? computerScore++
+      : "";
+  }
+  //   console.log(userScore);
+  //   console.log(computerScore);
+  userScore > computerScore
+    ? console.log("You won the game!")
+    : computerScore > userScore
+    ? console.log("You lost the game")
+    : computerScore == userScore
+    ? console.log("It's a draw!")
+    : "";
+}
 
-let computerChoice = getComputerChoice();
-
-console.log(playGame(userChoice, computerChoice));
+game();
