@@ -36,10 +36,14 @@ function capitalize(string) {
 //   return capitalize(choicePrompt);
 // }
 
-const buttons = document.querySelector(".buttons");
+const buttons = document.querySelector(".buttons-container");
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
+const userScoreDisplay = document.querySelector("#user-score");
+const computerScoreDisplay = document.querySelector("#computer-score");
+
+const winnerDisplay = document.createElement("p");
 
 function playRound(playerSelection, computerSelection) {
   if (
@@ -56,18 +60,27 @@ let userScore = 0;
 let computerScore = 0;
 
 function game(userChoice) {
-  let computerChoice = getComputerChoice();
-  // console.log(playRound(userChoice, computerChoice));
-  let round = playRound(userChoice, computerChoice);
-  if (round == 1) {
-    userScore++;
-    console.log("You won this round");
-  } else if (round == 2) {
-    computerScore++;
-    console.log("You lost this round");
-  } else console.log("You drew this round");
-  console.log(`Your score is ${userScore}`);
-  console.log(`Computer score is ${computerScore}`);
+  if (userScore < 5 && computerScore < 5) {
+    let computerChoice = getComputerChoice();
+    // console.log(playRound(userChoice, computerChoice));
+    let round = playRound(userChoice, computerChoice);
+    if (round == 1) {
+      userScore++;
+      console.log("You won this round");
+    } else if (round == 2) {
+      computerScore++;
+      console.log("You lost this round");
+    } else console.log("You drew this round");
+    console.log(`Your score is ${userScore}`);
+    console.log(`Computer score is ${computerScore}`);
+    userScoreDisplay.innerText = userScore;
+    computerScoreDisplay.innerText = computerScore;
+    if (userScore == 5) {
+      buttons.after(winnerDisplay, "You win!");
+    } else if (computerScore == 5) {
+      buttons.after(winnerDisplay, "You lose!");
+    }
+  }
 }
 //   console.log(userScore);
 //   console.log(computerScore);
