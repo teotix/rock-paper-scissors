@@ -1,8 +1,29 @@
 body {
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
+    margin: 0;
+    padding: 0;
+    background-image: url('/images/rock-paper-scissors.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.game-container {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    box-shadow: 0 0 10px 5px;
 }
 
 .user-score-div {
@@ -20,6 +41,42 @@ body {
 }
 
 .results-div {
+    margin-top: 50px;
     display: flex;
     gap: 150px;
+    height: 400px;
+}
+
+.buttons-container {
+    bottom: 0;
+    position: absolute;
+    margin-bottom: 100px;
+}
+
+.pick-buttons {
+    display: flex;
+    gap: 25px;
+}
+
+.reset-button {
+    display: flex;
+    justify-content: center;
+}
+
+#reset {
+    margin-top: 25px;
+}
+
+button {
+    background-color: gray;
+    font-weight: bold;
+    font-size: large;
+    width: 150px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 3px 4px 10px;
+}
+
+.results-div img {
+    width: 200px;
 }
