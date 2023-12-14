@@ -22,7 +22,7 @@ const computerScoreDisplay = document.querySelector("#computer-score");
 const resetButton = document.querySelector("#reset");
 const userChoiceImage = document.querySelector("#user-choice");
 const computerChoiceImage = document.querySelector("#computer-choice");
-const resultsDiv = document.querySelector('.results-div')
+const resultsDiv = document.querySelector(".results-div");
 
 const winnerDisplay = document.createElement("p");
 winnerDisplay.style.cssText = "font-size: 65px; margin: 0; font-weight: bold";
@@ -70,13 +70,9 @@ function game(userChoice) {
     let round = playRound(userChoice, computerChoice);
     if (round === 1) {
       userScore++;
-      console.log("You won this round");
     } else if (round === 3) {
       computerScore++;
-      console.log("You lost this round");
-    } else console.log("You drew this round");
-    console.log(`Your score is ${userScore}`);
-    console.log(`Computer score is ${computerScore}`);
+    }
     userScoreDisplay.innerText = userScore;
     computerScoreDisplay.innerText = computerScore;
     if (userScore == 5) {
